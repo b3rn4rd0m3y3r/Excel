@@ -1,0 +1,66 @@
+<head>
+	<link rel="stylesheet" href="w3c.css">
+	<link rel="stylesheet" href="w3c_comp.css">
+	<style>
+		.frmGroup {background-color: rgba(0, 255, 255, 0.1); padding: 10px; }
+		table {
+			display: table;
+			border-collapse: separate;
+			box-sizing: border-box;
+			text-indent: initial;
+			font-size: medium;
+			font-style: normal;
+			text-align: start;
+			border-spacing: 2px;
+			border-color: gray;
+			font-variant: normal;
+			}
+		table.az {
+			border-radius: 6px;
+			}
+		.sombra {
+				-webkit-box-shadow: 10px 10px 20px 9px rgba(0,0,0,0.2);
+				box-shadow: 10px 10px 20px 9px rgba(0,0,0,0.2);
+				}
+		H1 {
+			color: #4080D0;
+			font-weight: bold;
+			}
+	</style>
+</head>
+<body>
+	<center class="w3-container">
+		<h1 class="w3-indigo" id="tit">Entrada dos Documentos</h1>
+		<form class="" method="post" action="GravaDocum.asp">
+			<table class="az sombra w3-table w3-panel w3-round-large frmGroup" style="width: 70%">
+				<tr><td><label></label></td><td><input type="hidden" id="Id" name="Id"></td></tr>
+				<tr><td><label class="w3-label">Título</label></td><td><input class="w3-input" type="text" id="titulo" name="titulo"></td></tr>
+				<tr><td><label class="w3-label">Assunto</label></td><td><input class="w3-input" type="text" id="assunto" name="assunto"></td></tr>
+				<tr>
+					<td><label class="w3-label">Categoria</label></td>
+					<td>
+						<select class="w3-input" id="categ" name="categ">
+							<option value="Beneficios">Beneficios</option>
+							<option value="Contabilidade">Contabilidade</option>
+							<option value="Financeiro">Financeiro</option>
+							<option value="RH">RH</option>
+						</select>
+					</td>
+				</tr>
+				<tr><td><label class="w3-label">Palavras<br>Chave</label></td><td><input class="w3-input" type="text" id="keywords" name="keywords"></td></tr>
+				<tr><td><label class="w3-label">Observação</label></td><td><input class="w3-input" type="text" id="observacao" name="observacao"></td></tr>
+				<tr>
+					<td>
+						<label class="w3-label">Link do<br>documento</label>
+					</td>
+					<td>
+						<input class="w3-input" type="text" id="linkdoc" name="linkdoc">
+						<input type=button onclick="var w = window.open('PDFs/reportFiles.php','newPage','width=600,height=400,top=80,left=500');" value="ESCOLHE">
+					</td>
+				</tr>
+				<tr><td>&nbsp;</td><td><input type="hidden" id="apagado" name="apagado" value="N"></td></tr>
+				<tr><td align=center colspan=2><input class="w3-indigo" type="submit"></td></tr>
+			</table>
+		</form>
+	</center>
+</body>
