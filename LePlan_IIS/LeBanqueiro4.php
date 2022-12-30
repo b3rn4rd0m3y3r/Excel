@@ -8,11 +8,9 @@
   // Variáveis para quebra
   $q = "@#$%";
   $UF_ant = "@#$%";
-  // Somas UF
   $UF_soma_valor = 0;
   $UF_soma_valor_total = 0;
   $CID_ant = "@#$%";
-  // Somas Municípios
   $CID_soma_valor = 0;
   $CID_soma_valor_total = 0;
   // Sql
