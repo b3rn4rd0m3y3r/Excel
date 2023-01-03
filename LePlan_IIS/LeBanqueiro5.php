@@ -27,8 +27,7 @@
   // Pode tentar odbc_fetch_row também
   $t = "</td><td>";
   $v = "&nbsp;";
-  // NOVO - Maior valor de UF e CIDade
-  
+  // NOVO
   // Arrays UF e Cidade
   $arrUF = array();
   $arrCID = array();
@@ -40,9 +39,10 @@
 	if( $CID != $CID_ant ){
 		if( $CID_ant != $q ){
 			echo "<tr><td>" . $v . $t . $v . $t . "<b>" . $CID_ant . "</b>" . $t . $v. $t . "Soma:" . $t . $CID_soma_valor . "</td></tr>";
-			// Alimenta arrCID
+			// NOVO - alimenta arrCID
 			$arrCID[$UF_ant . $CID_ant] = $CID_soma_valor;
 			}
+
 		$CID_ant = $CID;
 		// Acúmulo na quebra
 		$CID_soma_valor_total += $CID_soma_valor;
@@ -52,7 +52,7 @@
 	if( $UF != $UF_ant ){
 		if( $UF_ant != $q ){
 			echo "<tr><td>" . $v . $t . "<b>" . $UF_ant . "</b>" . $t . $v . $t . $v. $t . "Soma:" . $t . $UF_soma_valor . "</td></tr>";
-			// Alimenta arrUF
+			// NOVO - alimenta arrUF
 			$arrUF[$UF_ant] = $UF_soma_valor;
 			}
 		$UF_ant = $UF;
@@ -66,9 +66,9 @@
 	$UF_soma_valor += (float) $valor;
 	$CID_soma_valor += (float) $valor;
 	}
-	// Alimenta arrCID
+	// NOVO - alimenta arrCID
 	$arrCID[$UF_ant . $CID_ant] = $CID_soma_valor;
-	// Alimenta arrUF
+	// NOVO - alimenta arrUF
 	$arrUF[$UF_ant] = $UF_soma_valor;
 	// Acúmulo da última quebra
 	$CID_soma_valor_total += $CID_soma_valor;
@@ -80,22 +80,16 @@
 	echo "</table>";
 	// Exibe arranjos
 	// 1 - pelo debug
-	//print_r($arrUF);
-	//echo "<br>";
-	//print_r($arrCID);
+	print_r($arrUF);
 	echo "<br>";
-	echo "<table border=1 cellspacing=0 cellpadding=4>";
+	print_r($arrCID);
+	echo "<br>";
 	// 2 - com loop foreach
 	foreach( $arrUF as $key=>$value ){
-		echo "<tr><td>" . $key . "</td><td>" . $value . "</td></tr>";
+		echo $key . "-" . $value . "<br>";
 		}
-	echo "</table>";
 	echo "<br>";
-	echo "<table border=1 cellspacing=0 cellpadding=4>";
 	foreach( $arrCID as $key=>$value ){
-		$UF = substr($key, 0,2);
-		$CID = substr($key, 2);
-		echo "<tr><td>" . $UF . "</td><td>" . $CID . "</td><td>" . $value . "</td></tr>";
+		echo $key . "-" . $value . "<br>";
 		}
-	echo "</table>";
 ?>
