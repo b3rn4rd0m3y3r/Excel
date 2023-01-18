@@ -55,26 +55,28 @@
   $arrBrks = explode(",", $BRK_get);
   $oarrBrks = [];
   $cnt = 0;
+  // NOVO - Variável inicial de quebra
+  $q = "@#$%";
+  // Mostra na tela
  foreach( $arrBrks as $key=>$valor ){
-	$oarrBrks[$cnt]->name = $key;
-	$oarrBrks[$cnt]->value = $valor;
-	echo $key . "-" . $oarrBrks[$cnt]->name . "<br>";
+	$oarrBrks[$valor]->name = $key;
+	$oarrBrks[$valor]->value = $valor;
+	$oarrBrks[$valor]->anterior = $q;
+	$oarrBrks[$valor]->subtotal = 0;
+	$oarrBrks[$valor]->total = 0;
+	//echo $key . "-" . $oarrBrks[$cnt]->name . "<br>";
 	$cnt++;
 	}
   echo "<br>Brks<br>";
   print_r($oarrBrks);
   echo "<br>";
-  echo "Cmps: "; 
-  print_r($arrCmps);
-  echo "<br>";
-  echo "Tps: "; 
-  print_r($arrTps);
-  echo "<br>";
-  echo "Decs: "; 
-  print_r($arrDecs);
-  echo "<br>";
-  echo "Cols: ";
-  print_r($arrCols);
+  //print_r($arrCmps);
+  //echo "<br>";
+  //print_r($arrTps);
+  //echo "<br>";
+  //print_r($arrDecs);
+  //echo "<br>";
+  //print_r($arrCols);
   // Re-seleciona todos os registros
   $sql = "SELECT * FROM [tab1$] ";
   if( $ORD_get != "" ){
