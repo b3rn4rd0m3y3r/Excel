@@ -30,8 +30,9 @@ function grafupd(plan){
 		echo $e->getMessage();
 		}
 	// Sql
-	$sql = "UPDATE Tasks SET Tarefa = '" . $Tarefa . "', Membro = '" . $Membro . "', DtInicial = '" . $Dtinicial . "', DtFinal = '" . $Dtfinal . "' WHERE Id = " . strval($Id);
+	$sql = "INSERT INTO Tasks (Id, Tarefa, Membro, DtInicial, DtFinal) VALUES (NULL, '" . $Tarefa . "', '" . $Membro . "','" . $Dtinicial . "','" . $Dtfinal . "')";
 	echo $sql . "<br>";
+	
 	try { 
 		$res = $conn->exec($sql);
 		} catch(Exception $e) {
