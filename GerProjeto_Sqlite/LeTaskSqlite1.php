@@ -2,12 +2,9 @@
   /*
 	CHAMADA:
 	
-	http://localhost/dbapp/LeContasCorrentes8.php?
-	Planilha=ContasCorrentes.xls
-	&Ordem=UF_t,Cidade_t,CPF_t
-	&Quebra=UF_t,Cidade_t
-	&Somas=Valor_f_2,Desconto_f_2
-	
+	http://localhost/dbapp/LeTaskSqlite1.php?
+	Planilha=Projetos.db
+
   */
   // Header
   header('Content-Type: text/html; charset=iso-8859-1');
@@ -19,9 +16,7 @@
 	}
 	  // Conexão
 	try {
-		//$odbt =  "sqlite:./" . $PLAN_get;
 		$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
-		//echo $odbt . "<br>";
 		$conn = new PDO($odbt);
 		} catch(PDOException $e) {
 		echo $e->getMessage();
@@ -33,8 +28,10 @@
   $stmt = $conn->prepare($sql);
   $res = $stmt->execute();
   print_r($stmt);
-  echo "<br>";
+  // View
+  echo "<table cellspacing=0 cellpadding=4 border=1>";
   while($row = $stmt->fetch()){
-	echo $row["Tarefa"]  . "<br>";
+	echo "<tr><td>" . $row["Id"] . "</td><td>" . $row["Tarefa"]  . "</td><td>" . $row["DtInicial"] . "</td><td>" . $row["DtFinal"]  . "</td></tr>";
 	}
+   echo "</table>";
 ?>
