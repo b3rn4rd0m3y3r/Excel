@@ -22,13 +22,11 @@
   /*
 	CHAMADA:
 	
-	http://localhost/dbapp/LeContasCorrentes8.php?
-	Planilha=ContasCorrentes.xls
-	&Ordem=UF_t,Cidade_t,CPF_t
-	&Quebra=UF_t,Cidade_t
-	&Somas=Valor_f_2,Desconto_f_2
+	http://localhost/dbapp/LeTaskSqlite5.php?
+	Planilha=Projetos.db
 	
   */
+  // 1 - DEFINIÇÕES INICIAIS
   // Header
   header('Content-Type: text/html; charset=iso-8859-1');
   // Pega o nome da tabela na URL
@@ -37,7 +35,7 @@
 	} else {
 	$PLAN_get = "";
 	}
-   // Conex�o
+   // 2 - CONEXÃO AO BANCO DE DADOS
   try {
 	//$odbt =  "sqlite:./" . $PLAN_get;
 	$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
@@ -48,16 +46,17 @@
 	}
   print_r($conn);
   echo "<br>";
-  // Sql
+  // 3 - CONSTRUÇÃO/EXECUÇÃO DO SQL
   $sql = "SELECT * FROM Tasks ORDER BY Id";
   $stmt = $conn->prepare($sql);
   $res = $stmt->execute();
-  // M�ximos e m�nimos
+  // 4 - VALOR INICIAL DA MENOR E DA MAIOR DATA
   $MAIOR_data = strtotime('2000-12-31 00:00:00');
   $MENOR_data = strtotime('2037-12-31 00:00:00');
   $LARG_DIA = 40;
   $ALT_BARRA = 30;
-  // Primeiro loop
+  // 5 - LEITURA DE TODOS OS REGISTROS E
+  //       DESCOBERTA DA MENOR E DA MAIOR DATA
   echo "<div id=trfs>";
   $lin = 0;
   while($row = $stmt->fetch()){
@@ -78,8 +77,8 @@ echo "</div>";
   // Segundo loop
   $stmt1 = $conn->prepare($sql);
   $res = $stmt1->execute();
-  
-  //echo "<br>No Linhas: " . $NoLin;
+  // 6 - LEITURA DE TODOS OS REGISTROS E
+  //       POSICIONAMENTO DAS BARRAS
   $lin = 0;
   echo "<div id=main>";
   while($row = $stmt1->fetch()){
@@ -87,7 +86,7 @@ echo "</div>";
 	$DtFim = $row["DtFinal"];
 	$Dias = (strtotime($DtFim)-strtotime($DtIni))/$UmDia+1;
 	$Xini = ((strtotime($DtIni) - $MENOR_data)/$UmDia)*$LARG_DIA;
-	echo "<div class=bar style=\"top:" . $lin*($ALT_BARRA+5) . "px;height:" . $ALT_BARRA . "px;left:" . $Xini . "px;width:" . $Dias*$LARG_DIA . "px;background-color:red;\">" . $Xini . "</div>";
+	echo "<div class=bar style=\"top:" . $lin*($ALT_BARRA+5) . "px;height:" . $ALT_BARRA . "px;left:" . $Xini . "px;width:" . $Dias*$LARG_DIA . "px;background-color:red;\">&nbsp;&nbsp;" . $Xini . "</div>";
 	$lin++;
 	}
   $NoLin = $lin;
