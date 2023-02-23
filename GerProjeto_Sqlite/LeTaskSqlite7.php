@@ -24,11 +24,8 @@
   /*
 	CHAMADA:
 	
-	http://localhost/dbapp/LeContasCorrentes8.php?
-	Planilha=ContasCorrentes.xls
-	&Ordem=UF_t,Cidade_t,CPF_t
-	&Quebra=UF_t,Cidade_t
-	&Somas=Valor_f_2,Desconto_f_2
+	http://localhost/dbapp/LeTaskSqlite7.php?
+	Planilha=Projetos.db
 	
   */
   // Header
@@ -40,7 +37,7 @@
 	$PLAN_get = "";
 	}
 	//echo '<pre>';print_r(PDO::getAvailableDrivers());echo '</pre>';  
-	  // Conexão
+	  // ConeÃ£o
   //$conn = odbc_connect("Driver={Microsoft Excel Driver (*.xls)};DriverId=790;Dbq=" . $PLAN_get . ";DefaultDir=D:\\Websis\\usu\\dvpi\\Inetpub\\wwwroot\\dbapp" , '', '');
   try {
 	//$odbt =  "sqlite:./" . $PLAN_get;
@@ -56,7 +53,7 @@
   $stmt = $conn->prepare($sql);
   $res = $stmt->execute();
   
-  // Máximos e mínimos
+  // MÃ¡ximos e mÃ­nimos
   $MAIOR_data = strtotime('2000-12-31 00:00:00');
   $MENOR_data = strtotime('2037-12-31 00:00:00');
   $LARG_DIA = 40;
@@ -111,10 +108,9 @@
 	if( $Dias < 4 ) { $COR = "gold"; $LETRA = "red"; }
 	if( $Dias < 2 ) { $COR = "yellow"; $LETRA = "red";}
 	$Xini = (($DtIni - $MENOR_data)/$UmDia)*$LARG_DIA;
-	// Barra de exibição de uma tarefa
+	// Barra de exibiÃ§Ã£o de uma tarefa
 	echo "<div class=bar style=\"cursor: pointer;top:" . $lin*($ALT_BARRA+5) . "px;height:" . $ALT_BARRA . "px;left:" . $Xini . "px;width:" . $Dias*$LARG_DIA . "px;background-color:" . $COR . "; color:" .  $LETRA . "\" ";
-	//echo " OnClick=\"window.location.href = 'LeUmaTaskSqlite3.php?Id=" . $Id . "'\">&nbsp;&nbsp;";
-	echo " OnClick=\"window.open('LeUmaTaskSqlite3.php?Id=" . $Id . "','','width=400,height=400');\">&nbsp;&nbsp;";
+	echo " OnClick=\"window.open('LeUmaTaskSqlite3.php?Id=" . $Id . "','','width=500,height=500');\">&nbsp;&nbsp;";
 	echo  ($Xini/$LARG_DIA+1) . "&deg;" . " dia</div>";
 	
 	$lin++;

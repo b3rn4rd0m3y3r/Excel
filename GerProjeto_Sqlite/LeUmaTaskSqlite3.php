@@ -1,9 +1,11 @@
-<meta charset="iso-8859-1"/>
-<style>
-	BODY {font-family: Arial; color: gray;}
-	H1 {color: #2196F3;}
-	LABEL {color: #607d8b;font-weight: bold;}
-</style>
+<head>
+	<meta charset="iso-8859-1" />
+	<style>
+		BODY {font-family: Arial; color: gray;}
+		H1 {color: #2196F3;}
+		LABEL {color: #607d8b;font-weight: bold;}
+	</style>
+</head>
 <?php
 function dtinv2normal($txt){
 	$normal = substr($txt,8,2) . "/" .substr($txt,5,2) . "/" . substr($txt,0,4);
@@ -21,7 +23,7 @@ function dtinvtraco($txt){
 	&Id=999
 	
   */
-  // Header
+  // 1 - DEFINIÇÕES INICIAIS
   header('Content-Type: text/html; charset=iso-8859-1');
   // Pega o nome da tabela na URL
   if( $_GET["Planilha"] ) {
@@ -34,8 +36,7 @@ function dtinvtraco($txt){
 	} else {
 	$ID_get = "";
 	}
-  //print_r($ID_get);
-  // Conex�o
+   // 2 - CONEXÃO AO BANCO DE DADOS
   try {
 	//$odbt =  "sqlite:./" . $PLAN_get;
 	$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
@@ -45,12 +46,11 @@ function dtinvtraco($txt){
 	echo $e->getMessage();
 	}
   
-  // Sql
+  // 3 - CONSTRUÇÃO/EXECUÇÃO DO SQL
   $sql = "SELECT * FROM Tasks WHERE Id = " . $ID_get;
-  //$sql = "SELECT * FROM Tasks WHERE Id = 4";
-  //echo $sql . "<br>";
   $stmt = $conn->prepare($sql);
   $res = $stmt->execute();
+  // 4 - LEITURA DO REGISTROS APONTADO POR ID
   $row = $stmt->fetch();
 ?>
 <h1>REGISTRO N<sup>o</sup> <?php echo (int) $row["Id"]; ?></h1>
@@ -59,7 +59,7 @@ function dtinvtraco($txt){
 		<tr><td><label>Id:</label></td><td><input name=Id value="<?php echo (int) $row["Id"]; ?>"></td></tr>
 		<tr><td><label>Tarefa:</label></td><td><input name=Tarefa value="<?php echo $row["Tarefa"]; ?>"></td></tr>
 		<tr><td><label>Membro:</label></td><td><input name=Membro value="<?php echo mb_convert_encoding($row["Membro"], 'ISO-8859-1', 'UTF-8'); ?>"></td></tr>
-		<tr><td><label>In�cio:</label></td><td><input type="date" name=Dtinicial value="<?php echo dtinvtraco($row["DtInicial"]); ?>"></td></tr>
+		<tr><td><label>In&iacute;cio:</label></td><td><input type="date" name=Dtinicial value="<?php echo dtinvtraco($row["DtInicial"]); ?>"></td></tr>
 		<tr><td><label>Final:</label></td><td><input type="date" name=Dtfinal value="<?php echo dtinvtraco($row["DtFinal"]); ?>"></td></tr>
 		<tr><td align=center><input type=submit value="ALTERAR"></td></tr>
 	<table>
