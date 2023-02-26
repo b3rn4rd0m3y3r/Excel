@@ -28,6 +28,7 @@
 	Planilha=Projetos.db
 	
   */
+  // 1 - DEFINIÇÕES INICIAIS
   // Header
   header('Content-Type: text/html; charset=iso-8859-1');
   // Pega o nome da tabela na URL
@@ -36,31 +37,29 @@
 	} else {
 	$PLAN_get = "";
 	}
-	//echo '<pre>';print_r(PDO::getAvailableDrivers());echo '</pre>';  
-	  // Coneão
-  //$conn = odbc_connect("Driver={Microsoft Excel Driver (*.xls)};DriverId=790;Dbq=" . $PLAN_get . ";DefaultDir=D:\\Websis\\usu\\dvpi\\Inetpub\\wwwroot\\dbapp" , '', '');
+  // 2 - CONEXÃO AO BANCO DE DADOS
   try {
 	//$odbt =  "sqlite:./" . $PLAN_get;
 	$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
-	//echo $odbt . "<br>";
 	$conn = new PDO($odbt);
 	} catch(PDOException $e) {
 	echo $e->getMessage();
 	}
   
-  // Sql
+  // 3 - CONSTRUÇÃO/EXECUÇÃO DO SQL
   $sql = "SELECT * FROM Tasks ORDER BY Id";
   $stmt = $conn->prepare($sql);
   $res = $stmt->execute();
-  
-  // Máximos e mínimos
+  // 4 - VALOR INICIAL DA MENOR E DA MAIOR DATA
+  //       E OUTROS PARÂMETROS
   $MAIOR_data = strtotime('2000-12-31 00:00:00');
   $MENOR_data = strtotime('2037-12-31 00:00:00');
   $LARG_DIA = 40;
   $ALT_BARRA = 30;
   echo "<h1>GERENCIADOR DO PROJETO: " . $PLAN_get .  "</h1>";
   
-  // Primeiro loop
+  // 5 - LEITURA DE TODOS OS REGISTROS E
+  //       DESCOBERTA DA MENOR E DA MAIOR DATA
   echo "<div id=trfs>";
   $lin = 0;
   while($row = $stmt->fetch()){
@@ -82,7 +81,8 @@
   //  echo "<br>______________________________________________<br>";
   $UmDia = 86400; // 24h*60min*60seg
   
-  // Segundo loop
+  // 6 - LEITURA DE TODOS OS REGISTROS E
+  //       POSICIONAMENTO DAS BARRAS
   
   $stmt1 = $conn->prepare($sql);
   $res = $stmt1->execute();
