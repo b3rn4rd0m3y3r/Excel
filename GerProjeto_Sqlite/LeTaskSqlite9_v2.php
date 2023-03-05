@@ -76,7 +76,7 @@
   $stmt = $conn->prepare($sql);
   $res = $stmt->execute();
   
-  // Máximos e mínimos
+  // MÃ¡ximos e mÃ­nimos
   $MAIOR_data = strtotime('2000-12-31 00:00:00');
   $MENOR_data = strtotime('2037-12-31 00:00:00');
   $LARG_DIA = 40;
@@ -139,7 +139,7 @@
 	if( $Dias < 4 ) { $COR = "gold"; $LETRA = "red"; }
 	if( $Dias < 2 ) { $COR = "yellow"; $LETRA = "red";}
 	$Xini = (($DtIni - $MENOR_data)/$UmDia)*$LARG_DIA;
-	// Barra de exibição de uma tarefa
+	// Barra de exibiÃ§Ã£o de uma tarefa
 	echo "<div class=bar style=\"cursor: pointer;top:" . $lin*($ALT_BARRA+5) . "px;height:" . $ALT_BARRA . "px;left:" . $Xini . "px;width:" . $Dias*$LARG_DIA . "px;background-color:" . $COR . "; color:" .  $LETRA . "\" ";
 	echo " OnClick=\"window.open('LeUmaTaskSqlite4_v2.php?Id=" . $Id . "&Dias=" . $Dias . "','','width=400,height=400');\">&nbsp;&nbsp;";
 	echo  ($Xini/$LARG_DIA+1) . "&deg;" . " dia</div>";

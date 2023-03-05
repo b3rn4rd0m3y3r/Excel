@@ -29,7 +29,7 @@ function dtinvtraco($txt){
 	} else {
 	$PLAN_get = "";
 	}
-  // Pega o código da hierarquia
+  // Pega o cÃ³digo da hierarquia
   if( $_GET["Codigo"] ) {
 	$COD_get = $_GET["Codigo"];
 	} else {
@@ -43,7 +43,7 @@ function dtinvtraco($txt){
 		<tr><td><label>Hierarquia:</label></td><td><input name=CodHierarquia value="<?php echo $COD_get; ?>"></td></tr>
 		<tr><td><label>Tarefa:</label></td><td><input name=Tarefa value=""></td></tr>
 		<tr><td><label>Membro:</label></td><td><input name=Membro value=""></td></tr>
-		<tr><td><label>Início:</label></td><td><input type="date" name=Dtinicial value=""></td></tr>
+		<tr><td><label>InÃ­cio:</label></td><td><input type="date" name=Dtinicial value=""></td></tr>
 		<tr><td><label>Final:</label></td><td><input type="date" name=Dtfinal value=""></td></tr>
 		<tr><td align=center><input type=submit value="GRAVAR"></td></tr>
 	<table>

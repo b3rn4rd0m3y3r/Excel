@@ -21,7 +21,7 @@ function grafupd(plan){
 	$Dtinicial = $_POST["Dtinicial"];
 	$Dtfinal = $_POST["Dtfinal"];
 
-	// Conex„o
+	// Conex√£o
 	try {
 		//$odbt =  "sqlite:./" . $PLAN_get;
 		$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
@@ -40,4 +40,4 @@ function grafupd(plan){
 		}
 	$row = array();
 ?>
-<button onclick="grafupd('<?php echo $PLAN_get; ?>');">ATUALIZA GR¡FICO</button>
+<button onclick="grafupd('<?php echo $PLAN_get; ?>');">ATUALIZA GR√ÅFICO</button>
