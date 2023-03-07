@@ -2,7 +2,7 @@
 function grafupd(plan){
 	var o = window.opener;
 	var p = o.parent;
-	p.window.location.href = 'LeTaskSqlite9_v2.php?Planilha=' + plan;
+	p.window.location.href = 'LeTaskSqlite10_v2.php?Planilha=' + plan;
 	}
 </script>
 <?php
@@ -24,7 +24,8 @@ function grafupd(plan){
 	// Conexão
 	try {
 		//$odbt =  "sqlite:./" . $PLAN_get;
-		$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
+		//$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
+		$odbt = 'sqlite:'. __DIR__ . "\\" . $PLAN_get;
 		//echo $odbt . "<br>";
 		$conn = new PDO($odbt);
 		} catch(PDOException $e) {
