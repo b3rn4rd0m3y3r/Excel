@@ -6,7 +6,7 @@ function grafupd(plan){
 	}
 </script>
 <?php
-  // 1 - COLETA DE PAR¬METROS 
+  // 1 - COLETA DE PAR√ÇMETROS 
   if( $_GET["Planilha"] ) {
 	$PLAN_get = $_GET["Planilha"];
 	} else {
@@ -17,7 +17,7 @@ function grafupd(plan){
 	} else {
 	$ID_get = "";
 	}
-  // 2 - CONEX√O AO BANCO
+  // 2 - CONEX√ÉO AO BANCO
 	try {
 		//$odbt =  "sqlite:./" . $PLAN_get;
 		//$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
@@ -27,9 +27,9 @@ function grafupd(plan){
 		} catch(PDOException $e) {
 		echo $e->getMessage();
 		}
-   // 3 - CONSTRU«√O DO SQL
+   // 3 - CONSTRU√á√ÉO DO SQL
    $sql = "DELETE FROM Tasks WHERE Id = " . strval($ID_get);
    $conn->exec($sql);
 echo $sql . "<br>";
 ?>
-<button onclick="grafupd('<?php echo $PLAN_get; ?>');">ATUALIZA GR¡FICO</button>
+<button onclick="grafupd('<?php echo $PLAN_get; ?>');">ATUALIZA GR√ÅFICO</button>

@@ -26,13 +26,21 @@
 	DIV.prel {position: relative;color: crimson;display: block;width:1000px;}
 	SPAN.del {font-size: 16px; font-family: Arial;color:red;}
 </style>
+<?php
+  // Pega o nome da tabela na URL
+  if( $_GET["Planilha"] ) {
+	$PLAN_get = $_GET["Planilha"];
+	} else {
+	$PLAN_get = "";
+	}
+?>
 <script>
 	// Deleta uma tarefa
 	function delTask(ev, vId){
 		ev.stopPropagation();
-		var resp = confirm("Confirma deleção ?");
+		var resp = confirm("Confirma deleÃ§Ã£o ?");
 		if( resp != 0 ){
-			var url = 'DelTaskSqlite1_v2.php?Id='+vId;
+			var url = 'DelTaskSqlite1_v2.php?Id='+vId+'&Planilha=<?php echo $PLAN_get; ?>';
 			window.open(url,'','width=500,height=500');
 			}
 		}
@@ -47,7 +55,7 @@
 		return String(str).substring(iLen, iLen - n);
 		}
 	}
-	// Insere uma task próxima à clicada
+	// Insere uma task prÃ³xima Ã  clicada
 	function chgTask(vCod,vPlan){
 		//alert(vCod);
 		iCod = parseInt(vCod)+10;
@@ -65,12 +73,7 @@
   */
   // Header
   header('Content-Type: text/html; charset=iso-8859-1');
-  // Pega o nome da tabela na URL
-  if( $_GET["Planilha"] ) {
-	$PLAN_get = $_GET["Planilha"];
-	} else {
-	$PLAN_get = "";
-	}
+
 
   try {
 	//$odbt =  "sqlite:./" . $PLAN_get;
@@ -86,14 +89,14 @@
   $stmt = $conn->prepare($sql);
   $res = $stmt->execute();
   
-  // Máximos e mínimos
+  // MÃ¡ximos e mÃ­nimos
   $MAIOR_data = strtotime('2000-12-31 00:00:00');
   $MENOR_data = strtotime('2037-12-31 00:00:00');
   $LARG_DIA = 40;
   $ALT_BARRA = 30;
   echo "<h1>GERENCIADOR DO PROJETO: " . $PLAN_get .  "</h1>";
   echo "<button ";
-  echo " OnClick=\"window.open('FrmTaskSqlite2_v2.php','','width=400,height=400');\">&nbsp;&nbsp;";
+  echo " OnClick=\"window.open('FrmTaskSqlite2_v2.php?Planilha=" . $PLAN_get . "','','width=500,height=500');\">&nbsp;&nbsp;";
   echo "NOVA TAREFA</button>";
   // Primeiro loop
   echo "<div id=trfs>";
@@ -149,9 +152,9 @@
 	if( $Dias < 4 ) { $COR = "gold"; $LETRA = "red"; }
 	if( $Dias < 2 ) { $COR = "yellow"; $LETRA = "red";}
 	$Xini = (($DtIni - $MENOR_data)/$UmDia)*$LARG_DIA;
-	// Barra de exibição de uma tarefa
+	// Barra de exibiÃ§Ã£o de uma tarefa
 	echo "<div class=bar style=\"cursor: pointer;top:" . $lin*($ALT_BARRA+5) . "px;height:" . $ALT_BARRA . "px;left:" . $Xini . "px;width:" . $Dias*$LARG_DIA . "px;background-color:" . $COR . "; color:" .  $LETRA . "\" ";
-	echo " OnClick=\"window.open('LeUmaTaskSqlite4_v2.php?Id=" . $Id . "&Dias=" . $Dias . "','','width=400,height=400');\">&nbsp;&nbsp;";
+	echo " OnClick=\"window.open('LeUmaTaskSqlite4_v2.php?Id=" . $Id . "&Planilha=" . $PLAN_get . "&Dias=" . $Dias . "','','width=400,height=400');\">&nbsp;&nbsp;";
 	echo  ($Xini/$LARG_DIA+1) . "&deg;" . " dia</div>";
 	
 	$lin++;

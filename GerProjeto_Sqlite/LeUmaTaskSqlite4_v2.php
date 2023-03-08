@@ -40,7 +40,7 @@ function dtinvtraco($txt){
 	$DIAS_get = "";
 	}
   //print_r($ID_get);
-  // Conexão
+  // ConexÃ£o
   try {
 	//$odbt =  "sqlite:./" . $PLAN_get;
 	//$odbt = 'sqlite:'. __DIR__ .'\Projetos.db';
@@ -58,13 +58,13 @@ function dtinvtraco($txt){
   $row = $stmt->fetch();
 ?>
 <h1>REGISTRO N<sup>o</sup> <?php echo (int) $row["Id"]; ?></h1>
-<form method="post" action="UpdTaskSqlite2_v2.php">
+<form method="post" action="UpdTaskSqlite2_v2.php?Planilha=<?php echo $PLAN_get; ?>">
 	<table>
 		<tr><td><label>Id:</label></td><td><input name=Id value="<?php echo (int) $row["Id"]; ?>"></td></tr>
 		<tr><td><label>Hierarquia:</label></td><td><input name=CodHierarquia value="<?php echo $row["CodHierarquia"]; ?>"></td></tr>
 		<tr><td><label>Tarefa:</label></td><td><input name=Tarefa value="<?php echo $row["Tarefa"]; ?>"></td></tr>
 		<tr><td><label>Membro:</label></td><td><input name=Membro value="<?php echo mb_convert_encoding($row["Membro"], 'ISO-8859-1', 'UTF-8'); ?>"></td></tr>
-		<tr><td><label>Início:</label></td><td><input type="date" name=Dtinicial value="<?php echo dtinvtraco($row["DtInicial"]); ?>"></td></tr>
+		<tr><td><label>InÃ­cio:</label></td><td><input type="date" name=Dtinicial value="<?php echo dtinvtraco($row["DtInicial"]); ?>"></td></tr>
 		<tr><td><label>Final:</label></td><td><input type="date" name=Dtfinal value="<?php echo dtinvtraco($row["DtFinal"]); ?>"></td></tr>
 		<tr><td><label>No. de Dias:</label></td><td><b><?php echo $DIAS_get ?></b></td></tr>
 		<tr><td align=center><input type=submit value="ALTERAR"></td></tr>

@@ -38,7 +38,7 @@ function dtinvtraco($txt){
 ?>
 <h1>INCLUIR TAREFA</h1>
 <!-- InsertTaskSqlite1_v2.php -->
-<form method="post" action="AddTaskSqlite2_v2.php">
+<form method="post" action="AddTaskSqlite2_v2.php?Planilha=<?php echo $PLAN_get; ?>">
 	<table>
 		<tr><td><label>Hierarquia:</label></td><td><input name=CodHierarquia value="<?php echo $COD_get; ?>"></td></tr>
 		<tr><td><label>Tarefa:</label></td><td><input name=Tarefa value=""></td></tr>

@@ -34,12 +34,12 @@ function dtinvtraco($txt){
   
 ?>
 <h1>REGISTRO N<sup>o</sup> <?php echo (int) $row["Id"]; ?></h1>
-<form method="post" action="AddTaskSqlite2_v2.php">
+<form method="post" action="AddTaskSqlite2_v2.php?Planilha=<?php echo $PLAN_get; ?>">
 	<table>
 		<tr><td><label>Hierarquia:</label></td><td><input name=CodHierarquia value=""></td></tr>
 		<tr><td><label>Tarefa:</label></td><td><input name=Tarefa value=""></td></tr>
 		<tr><td><label>Membro:</label></td><td><input name=Membro value=""></td></tr>
-		<tr><td><label>Início:</label></td><td><input type="date" name=Dtinicial value=""></td></tr>
+		<tr><td><label>InÃ­cio:</label></td><td><input type="date" name=Dtinicial value=""></td></tr>
 		<tr><td><label>Final:</label></td><td><input type="date" name=Dtfinal value=""></td></tr>
 		<tr><td align=center><input type=submit value="GRAVAR"></td></tr>
 	<table>
